@@ -1,11 +1,11 @@
 // 1번
-let user: { name: string, age?: number, isAdmin: boolean } = { name: "Alice", isAdmin: true }
+// let user: { name: string, age?: number, isAdmin: boolean } = { name: "Alice", isAdmin: true }
 
-user = { name: "Bob", age: 40, isAdmin: false }
+// user = { name: "Bob", age: 40, isAdmin: false }
 
 // 2번
 
-let numbers: readonly number[] = [1, 2, 3, 4]
+// let numbers: readonly number[] = [1, 2, 3, 4]
 
 // numbers.push(4);
 // numbers[0] = 42;
@@ -45,22 +45,22 @@ let numbers: readonly number[] = [1, 2, 3, 4]
 
 // 5번
 
-const products: { name: string; price: number; category?: string; }[] =
-    [
-        { name: "Laptop", price: 1000, category: "Electronics" },
-        { name: "Shoes", price: 50, category: "Fashion" },
-        { name: "Book", price: 20 },
-    ];
+// const products: { name: string; price: number; category?: string; }[] =
+//     [
+//         { name: "Laptop", price: 1000, category: "Electronics" },
+//         { name: "Shoes", price: 50, category: "Fashion" },
+//         { name: "Book", price: 20 },
+//     ];
 
-function getProductsByCategory(category: string): string[] {
-    return products.reduce((result: string[], product) => {
-        if (product.category === category) {
-            result.push(product.name);
-        }
-        return result
-    }, [])
-}
+// function getProductsByCategory(category: string): string[] {
+//     return products.reduce((result: string[], product) => {
+//         if (product.category === category) {
+//             result.push(product.name);
+//         }
+//         return result
+//     }, [])
+// }
 
-console.log(getProductsByCategory("Electronics")); // ["Laptop"]
-console.log(getProductsByCategory("Fashion")); // ["Shoes"]
-console.log(getProductsByCategory("Books")); // []
+// console.log(getProductsByCategory("Electronics")); // ["Laptop"]
+// console.log(getProductsByCategory("Fashion")); // ["Shoes"]
+// console.log(getProductsByCategory("Books")); // []
