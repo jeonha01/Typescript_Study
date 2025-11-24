@@ -66,28 +66,68 @@
 
 // 4. is -> 타입을 확실히 지정해준다
 
+// type Track = {
+//     title: string,
+//     releaseDate: string,
+// }
+
+// type Artist = {
+//     name: string,
+//     releaseDate: string,
+// }
+
+// function isTrack(result: Track | Artist): result is Track {
+//     return (result as Track).title !== undefined; // result의 값이 Track 타입이라고 가정하고 title이 비어있지 않으면 반환
+// }
+
+// function isArtist(result: Track | Artist): result is Artist {
+//     return (result as Artist).name !== undefined
+// }
+
+// function printInfo(result: Track | Artist) {
+//     if (isTrack(result)) {
+//         console.log(result.title)
+//     } else if (isArtist(result)) {
+//         console.log(result.name)
+//     }
+// }
+
 type Track = {
+    type: "track"
     title: string,
     releaseDate: string,
 }
 
 type Artist = {
+    type: "artist"
     name: string,
-    releaseDate: string,
+    debutDate: string,
 }
 
-function isTrack(result: Track | Artist): result is Track {
-    return (result as Track).title !== undefined; // result의 값이 Track 타입이라고 가정하고 title이 비어있지 않으면 반환
+const result: Track | Artist = { // 유니온 타입은 합집합의 개념
+    type: "artist",
+    name: "누나",
+    debutDate: "2026",
 }
 
-function isArtist(result: Track | Artist): result is Artist {
-    return (result as Artist).name !== undefined
+type Radio = {
+    type: "radio",
+    title: string;
+    numberOfSongs: number
 }
 
-function printInfo(result: Track | Artist) {
-    if (isTrack(result)) {
-        console.log(result.title)
-    } else if (isArtist(result)) {
-        console.log(result.name)
+type SearchResult = Track | Artist | Radio
+
+function getTypeName(result: SearchResult) {
+    if (result.type === "track") return "트랙"
+    else if (result.type === "artist") return "아티스트"
+    else if (result.type === "radio") return "라디오"
+    else {
+        exhaustiveCheck(result)
+        return "결과"
     }
+}
+
+function exhaustiveCheck(param: never) { // 에러케이스를 찾는 방법
+    throw new Error("에러 ")
 }
