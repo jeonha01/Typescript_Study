@@ -1,0 +1,81 @@
+// type ArrayType<T> = T[]
+
+// const numberArray: ArrayType<number> = [1, 2, 3]
+// const stringArray: ArrayType<string> = ["a", "b"]
+
+// 영화 정보
+// {
+//     status: "ok",
+//         totalPage: 20,
+//             totalResult: 300,
+//                 page: 1,
+//                     data: [{ title: "기생충", genre: "액션" }, { title: "파묘", genre: "공포" }, { title: "7번방의 선물", genre: "가족" }]
+// }
+
+// TV 정보
+// {
+//     status: "ok",
+//         totalPage: 20,
+//             totalResult: 300,
+//                 page: 1,
+//                     data: [{ series: "논스톱", runningTime: "120" }]
+// }
+
+// type CategoryResponse = {
+//     status: string,
+//     totalPage: number,
+//     totalResult: number,
+//     page: number,
+//     data: { name: string }[]
+// }
+
+// type MovieResponse = {
+//     status: string,
+//     totalPage: number,
+//     totalResult: number,
+//     page: number,
+//     data: { title: string, genre: string }[]
+// }
+
+type ApiResponse<T> = {
+    status: string,
+    totalPage: number,
+    totalResult: number,
+    page: number,
+    data: T[]
+}
+
+type Category = {
+    name: string
+}
+
+type Movie = { title: string, genre: string }
+
+type CategoryResponse = ApiResponse<Category>
+type MovieResponse = ApiResponse<Movie>
+
+let movieData: MovieResponse = {
+    status: "ok",
+    totalPage: 20,
+    totalResult: 300,
+    page: 1,
+    data: [{ title: "기생충", genre: "액션" }, { title: "파묘", genre: "공포" }, { title: "7번방의 선물", genre: "가족" }]
+}
+
+// function useState<T>(초기화값: T): [T, 함수<T>] {
+//     return [값, 함수]
+// }
+
+// const [value, setValue] = useState(true)
+
+// const [value2, setValue2] = useState<boolean>(false) // 제네릭 값으로 값을 넣어주자, 개발자가 헷갈리지 않게
+
+interface Length {
+    length: number
+}
+
+function getValue<T extends Length>(data: T) { // 타입 확장
+    console.log(data.length)
+}
+
+console.log(getValue("hello"))
