@@ -49,7 +49,7 @@ type Category = {
     name: string
 }
 
-type Movie = { title: string, genre: string }
+// type Movie = { title: string, genre: string }
 
 type CategoryResponse = ApiResponse<Category>
 type MovieResponse = ApiResponse<Movie>
@@ -79,3 +79,37 @@ function getValue<T extends Length>(data: T) { // 타입 확장
 }
 
 console.log(getValue("hello"))
+
+// 1. 조건부 타입
+type IsString<T> = T extends string ? string : Category;
+
+type result1 = IsString<number>
+
+// 2. mapped type
+type Movie = {
+    title?: string;
+    genre?: string;
+    rate?: number;
+}
+
+type Subset<T> = {
+    [K in keyof T]?: T[K] // T의 KEY들을 갖고온다 
+}
+
+const movie1: Subset<Movie> = { title: "기생충", genre: "액션" }
+
+interface Pair<T, U> {
+    first: T,
+    second: U,
+    display(): void
+}
+
+const pair: Pair<string, number> = {
+    first: "noona",
+    second: 2,
+    display() {
+        console.log(this.first + "는" + this.second + "살 입니다")
+    }
+}
+
+pair.display();
